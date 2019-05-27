@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Edit Item</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+    <ion-item>
+      <ion-label floating>Item Name</ion-label>
+      <ion-input
+        type="text"
+        [ngModel]="(item | async)?.name"
+        (ngModelChange)="newItem.name = $event"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Quantity</ion-label>
+      <ion-input
+        type="number"
+        [ngModel]="(item | async)?.quantity"
+        (ngModelChange)="newItem.quantity = $event"></ion-input>
+    </ion-item>
+
+    <button ion-button block (click)="updateItem()">Edit Item</button>
+
+  </ion-content>

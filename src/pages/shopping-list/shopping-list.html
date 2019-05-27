@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <!-- <ion-buttons start>
+      <button ion-button icon-only menuToggle>
+          <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons> -->
+    <ion-title>Shopping List</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+    <div class="shopping-item" *ngFor="let item of items | async" (click)="selectShoppingItem(item)">
+      <ion-checkbox [(ngModel)]="item.isChecked" (ngModelChange)="onItemSelect($event, item.id)"></ion-checkbox>
+      <ion-label
+        class="shopping-item__name"
+        [ngClass]="{'is-checked': item.isChecked }">{{item.name}}</ion-label>
+      <div class="shopping-item__quantity">{{ item.quantity }}</div>
+    </div>
+  </ion-list>
+
+  <!-- fab placed to the bottom end -->
+  <ion-fab bottom end (click)="navigateToAddShoppingPage()">
+      <button ion-fab color="primary">
+        <ion-icon ion-fab name="add"></ion-icon>
+      </button>
+  </ion-fab>
+</ion-content>

@@ -1,0 +1,46 @@
+<ion-content padding>
+
+    <ion-icon class="close-btn" name="close" (click)="goToList()"></ion-icon>
+
+    <form class="add-item-form">
+        <input
+          id="itemName"
+          class="form-control"
+          [(ngModel)]="shoppingItem.name"
+          name="itemName"
+          placeholder="What do we need..."
+          type="text"
+          required>
+
+        <div class="add-item-form__quantity">
+          <div>
+            <ion-icon name="basket"></ion-icon>
+            <div class="add-item-form__quantity-number">{{ shoppingItem.quantity }}</div>
+          </div>
+
+          <div>
+            <div class="add-item-form__quantity-btn" (click)="incQuantity()">+</div>
+            <div class="add-item-form__quantity-btn" (click)="decQuantity()">-</div>
+          </div>
+        </div>
+
+        <button class="add-item-form__btn" ion-button block (click)="addShoppingItem(shoppingItem)">Add</button>
+
+    </form>
+
+    <button ion-button block (click)="scanBarcode()">Scan Barcode</button>
+
+    <div *ngIf="results">
+      <div>Barcode:</div>
+      <div>{{results.text}}</div>
+      <div>{{results.format}}</div>
+      <div>{{results.cancelled}}</div>
+    </div>
+
+    <div *ngIf="product">
+      <div>Product:</div>
+      <div>{{product.brand_name}}</div>
+      <div>{{product.food_name}}</div>
+    </div>
+
+</ion-content>
