@@ -1,6 +1,8 @@
 import { Component } from '@angular/core'
 import { NavController, NavParams, ActionSheetController } from 'ionic-angular'
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore'
+import _ from 'lodash'
+import moment from 'moment'
 
 import { AddShoppingPage } from '../add-shopping/add-shopping'
 import { ShoppingItem } from '../../modals/shopping-item/shopping-item.interface'
@@ -13,6 +15,7 @@ import { EditShoppingItemPage } from '../edit-shopping-item/edit-shopping-item'
 })
 export class ShoppingListPage {
 
+  latestDate: any
   shoppingListRef$:  AngularFirestoreCollection<ShoppingItem>
   items: Observable<ShoppingItem[]>
 
@@ -24,6 +27,12 @@ export class ShoppingListPage {
   ) {
     this.shoppingListRef$ = this.fireStore.collection<ShoppingItem>('grocery-list')
     this.items = this.shoppingListRef$.valueChanges()
+    this.items.subscribe((items: ShoppingItem[]) => {
+      const dates = _.map(items, item => item.createdDate)
+      const latestDate = _.max(dates)
+      console.log(latestDate)
+      this.latestDate = moment(latestDate).format('MM/DD')
+    })
   }
 
   navigateToAddShoppingPage() {

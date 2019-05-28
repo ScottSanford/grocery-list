@@ -2,7 +2,7 @@
 
   <header class="sl-header">
     <div class="sl-header__title">Shopping list</div>
-    <div class="sl-header__date">Last updated {{ '05/26' }}</div>
+    <div class="sl-header__date">Last updated {{ latestDate }}</div>
 
     <div class="sl-header__add-btn" (click)="navigateToAddShoppingPage()">
         <ion-icon name="add"></ion-icon>
@@ -25,12 +25,6 @@
             [ngClass]="{'is-checked': item.isChecked }">{{item.name}}</label>
       </div>
       <div class="sl-item__quantity">{{item.quantity}}</div>
-
-      <!-- <label class="sl-item__checkbox">
-        <span [ngClass]="{'is-checked': item.isChecked }" (click)="selectShoppingItem(item)">{{item.name}}</span>
-        <input type="checkbox" [(ngModel)]="item.isChecked" (ngModelChange)="onItemSelect($event, item.id)">
-        <span class="checkmark"></span>
-      </label> -->
 
     </div>
   </main>

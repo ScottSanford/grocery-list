@@ -39,6 +39,7 @@ export class AddShoppingPage implements OnInit {
       // Push this into Firebase list called 'grocery-list'
       const id: string = this.fireStore.createId()
       this.groceryList.doc(id).set({
+        createdDate: Date.now(),
         id,
         isChecked: false,
         name: item.name,
