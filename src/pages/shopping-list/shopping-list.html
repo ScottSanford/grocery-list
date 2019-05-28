@@ -1,30 +1,38 @@
-<ion-header>
-  <ion-navbar color="primary">
-    <!-- <ion-buttons start>
-      <button ion-button icon-only menuToggle>
-          <ion-icon name="menu"></ion-icon>
-      </button>
-    </ion-buttons> -->
-    <ion-title>Shopping List</ion-title>
-  </ion-navbar>
-</ion-header>
+<ion-content class="sl">
 
-<ion-content>
+  <header class="sl-header">
+    <div class="sl-header__title">Shopping list</div>
+    <div class="sl-header__date">Last updated {{ '05/26' }}</div>
 
-  <ion-list>
-    <div class="shopping-item" *ngFor="let item of items | async" (click)="selectShoppingItem(item)">
-      <ion-checkbox [(ngModel)]="item.isChecked" (ngModelChange)="onItemSelect($event, item.id)"></ion-checkbox>
-      <ion-label
-        class="shopping-item__name"
-        [ngClass]="{'is-checked': item.isChecked }">{{item.name}}</ion-label>
-      <div class="shopping-item__quantity">{{ item.quantity }}</div>
+    <div class="sl-header__add-btn" (click)="navigateToAddShoppingPage()">
+        <ion-icon name="add"></ion-icon>
     </div>
-  </ion-list>
 
-  <!-- fab placed to the bottom end -->
-  <ion-fab bottom end (click)="navigateToAddShoppingPage()">
-      <button ion-fab color="primary">
-        <ion-icon ion-fab name="add"></ion-icon>
-      </button>
-  </ion-fab>
+  </header>
+
+  <main class="sl-list">
+    <div
+      class="sl-item"
+      *ngFor="let item of items | async"
+      ion-long-press
+      [interval]="1000"
+      (onPressing)="selectShoppingItem(item)">
+      <div class="checkbox">
+          <input type="checkbox" id="{{item.id}}" [(ngModel)]="item.isChecked" (ngModelChange)="onItemSelect($event, item.id)">
+          <label
+            for="{{item.id}}"
+            class="sl-item__label"
+            [ngClass]="{'is-checked': item.isChecked }">{{item.name}}</label>
+      </div>
+      <div class="sl-item__quantity">{{item.quantity}}</div>
+
+      <!-- <label class="sl-item__checkbox">
+        <span [ngClass]="{'is-checked': item.isChecked }" (click)="selectShoppingItem(item)">{{item.name}}</span>
+        <input type="checkbox" [(ngModel)]="item.isChecked" (ngModelChange)="onItemSelect($event, item.id)">
+        <span class="checkmark"></span>
+      </label> -->
+
+    </div>
+  </main>
+
 </ion-content>

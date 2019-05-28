@@ -8,6 +8,7 @@ import { AngularFirestoreModule } from 'angularfire2/firestore'
 import { FIREBASE_CREDENTIALS } from './firebase.credentials'
 import { BarcodeScanner } from '@ionic-native/barcode-scanner'
 import { HttpClientModule } from '@angular/common/http'
+import { LongPressModule } from 'ionic-long-press'
 
 import { MyApp } from './app.component'
 import { ShoppingListPage } from '../pages/shopping-list/shopping-list'
@@ -26,6 +27,7 @@ import { FormsModule } from '@angular/forms'
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    LongPressModule,
     IonicModule.forRoot(MyApp),
     // Init AngularFire with creds from the dashboard
     AngularFireModule.initializeApp(FIREBASE_CREDENTIALS),

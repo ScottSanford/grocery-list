@@ -32,7 +32,6 @@ export class AddShoppingPage implements OnInit {
 
     ngOnInit() {
       this.shoppingItem.quantity = 1
-      this.getProduct()
     }
 
     addShoppingItem(item: ShoppingItem) {

@@ -1,24 +1,120 @@
 page-shopping-list {
 
-}
+  .sl-header {
+    background-color: color($colors, white);
+    border-bottom: 1px solid color($colors, neutral-5);
+    height: 12rem;
+    padding: 4rem 2.5rem;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: repeat(2, auto);
 
-.shopping-item {
-  display: flex;
-  align-items: center;
-  padding: 5px 15px;
+    &__title {
+      font-size: 2rem;
+      font-weight: 300;
+      grid-row: 1 / 1;
+    }
 
-  &__name {
-    font-weight: bold;
-    margin-left: 10px;
+    &__date {
+      font-size: 1.2rem;
+      padding-top: .5rem;
+      grid-row: 2 / -1;
+    }
+
+    &__add-btn {
+      align-items: center;
+      background: color($colors, primary-2);
+      border-radius: 50%;
+      box-shadow: 0 1px 3px hsla(0, 0, 0, .12), 0 1px 2px hsla(0, 0, 0, .24);
+      color: color($colors, white);
+      display: flex;
+      font-size: 2rem;
+      height: 4rem;
+      grid-row: 1 / -1;
+      justify-content: center;
+      justify-self: end;
+      width: 4rem;
+    }
+
   }
 
-  &__quantity {
-    background-color: green;
-    padding: 2px 10px;
-    border-radius: 20px;
-    color: white;
+  .sl-list {
+    padding: 3rem 2.5rem;
+  }
+
+  .sl-item {
+    display: flex;
+    align-items: center;
+    padding-bottom: 3rem;
+
+    &__label {
+      color: color($colors, neutral-1);
+    }
+
+    .checkbox input[type="checkbox"] {
+      opacity: 0;
+    }
+
+    .checkbox label {
+        position: relative;
+        padding-left: 3.5rem;
+        left: -1.5rem;
+    }
+
+    .checkbox label::before,
+    .checkbox label::after {
+        position: absolute;
+        content: "";
+
+        /*Needed for the line-height to take effect*/
+        display: inline-block;
+    }
+
+    /*Outer box of the fake checkbox*/
+    .checkbox label::before{
+        background-color: color($colors, primary-3);
+        border-radius: 3px;
+        box-shadow: 0 0 6px color($colors, primary-3);
+        height: 2rem;
+        left: 0px;
+        top: -2px;
+        width: 2rem;
+    }
+
+    /*Checkmark of the fake checkbox*/
+    .checkbox label::after {
+        height: 5px;
+        width: 12px;
+        border-left: 2px solid color($colors, white);
+        border-bottom: 2px solid color($colors, white);
+        transform: rotate(-45deg);
+        left: 4px;
+        top: 4px;
+    }
+
+    /*Adding focus styles on the outer-box of the fake checkbox*/
+    .checkbox input[type="checkbox"]:checked + label::before {
+      background-color: color($colors, primary-2);
+      box-shadow: none;
+    }
+
+    /*Hide the checkmark by default*/
+    .checkbox input[type="checkbox"] + label::after {
+        content: none;
+    }
+
+    /*Unhide on the checked state*/
+    .checkbox input[type="checkbox"]:checked + label::after {
+        content: '';
+    }
+
+    &__quantity {
+      color: color($colors, neutral-2);
+      margin-left: auto;
+    }
   }
 }
+
 
 .is-checked {
   text-decoration: line-through;
